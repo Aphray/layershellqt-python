@@ -1,0 +1,36 @@
+[project]
+name = "QtLayerShell"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { "file" = "LICENSE" }
+authors = []
+keywords = ["Qt", "Layer Shell", "Wayland", "Bindings"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: POSIX :: Linux",
+]
+urls = {}
+dependencies = ["PySide6"]
+dynamic = ["version", "description"]
+
+[build-system]
+requires = ["py-build-cmake~=0.4.2"]
+build-backend = "py_build_cmake.build"
+
+[tool.py-build-cmake.module]
+name = "QtLayerShell"
+
+[tool.py-build-cmake.sdist]
+include = ["CMakeLists.txt", "src/*"]
+
+[tool.py-build-cmake.cmake]
+minimum_version = "3.18"
+build_type = "Release"
+generator = "Ninja"
+source_path = "."
+build_args = ["-j", "7"]

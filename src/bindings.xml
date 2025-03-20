@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<typesystem package="QtLayerShell">
+    <load-typesystem name="typesystem_core.xml" generate="no"/>
+    <load-typesystem name="typesystem_widgets.xml" generate="no"/>
+    <load-typesystem name="typesystem_gui.xml" generate="no"/>
+
+    <!-- <value-type name="QMargins" generate="no"/> -->
+
+    <object-type name="QLayerShell">
+
+        <enum-type name="Anchor" flags="Anchors"/>
+        <enum-type name="Layer"/>
+
+        <modify-function signature="QLayerShell(QWindow*)">
+            <modify-argument index="1">
+                <parent index="this" action="add"/>
+            </modify-argument>
+        </modify-function>
+
+        <!-- <function signature="setMargins(const QMargins&amp;)"/> -->
+        <!-- <function signature="setLayer(Layer)"/> -->
+
+    </object-type>
+</typesystem>
