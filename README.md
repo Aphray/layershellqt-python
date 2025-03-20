@@ -12,7 +12,7 @@ Build dependencies:
 - Ninja
 - PySide6
 - Shiboken6
-- py-build-cmake (installed automatically with pyproject.toml)
+- py-build-cmake
 
 Building
 -
@@ -23,9 +23,11 @@ source qtlayershell-env/bin/activate
 ```
 
 
-To build the bindings, you will need to install PySide6 and Shiboken6 from the Qt official releases (**the PySide6/Shiboken6 distributions on pypi likely won't work**):
+To build the bindings, you will need to install PySide6 and Shiboken6 from the Qt official releases (**the PySide6/Shiboken6 distributions on pypi likely won't work**). py-build-cmake can be install from pypi:
 ```
 pip install --index-url=http://download.qt.io/official_releases/QtForPython/ --trusted-host download.qt.io shiboken6 pyside6 shiboken6_generator
+
+pip install py-build-cmake
 ```
 Clone this repository:
 ```
@@ -36,7 +38,7 @@ Build and install the bindings. **NOTE: `--no-build-isolation` flag is required 
 cd qtlayershell-python
 pip install . --no-build-isolation
 ```
-Usage
+Using the bindings
 -
 To use the bindings:
 ```python
@@ -54,3 +56,4 @@ widget.show()
 
 sys.exit(app.exec())
 ```
+See the `examples` folder for a more detailed usage case.
