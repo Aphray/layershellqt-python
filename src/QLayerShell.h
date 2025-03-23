@@ -6,17 +6,12 @@
 
 #include "macros.h"
 
-#include <QEvent>
 #include <QObject>
 #include <QWindow>
 #include <QWidget>
-#include <QLayout>
 #include <QScreen>
-#include <QMouseEvent>
-#include <QPaintEvent>
-#include <QApplication>
+#include <QPainter>
 #include <QRasterWindow>
-
 #include <LayerShellQt/Shell>
 #include <LayerShellQt/Window>
 
@@ -58,11 +53,7 @@ public:
     };
     Q_ENUM(ScreenConfiguration)
 
-    explicit QLayerShell(QWidget* widget, QObject* parent = nullptr);
-
-    // ~QLayerShell() {
-    //     delete m_container;
-    // }
+    explicit QLayerShell(QWindow* window, QObject* parent = nullptr);
 
     void setAnchors(Anchors anchor);
     Anchors anchors() const;
@@ -85,13 +76,11 @@ public:
     void setScope(const QString& scope);
     QString scope() const;
 
-    void setScreen(QScreen* screen);
-    QScreen* screen() const;
+    static void useLayerShell();
+
 
 private:
-
-    QWindow* m_window;
-    LayerShellQt::Window* m_layerShellWindow;
+    LayerShellQt::Window* m_shellWindow;
 
 };
 
