@@ -16,7 +16,7 @@
 #include <LayerShellQt/Window>
 
 
-class BINDINGS_API QLayerShell : public QObject
+class BINDINGS_API QLayerShell : public QRasterWindow
 {
     Q_OBJECT
 
@@ -53,7 +53,11 @@ public:
     };
     Q_ENUM(ScreenConfiguration)
 
-    explicit QLayerShell(QWindow* window, QObject* parent = nullptr);
+    explicit QLayerShell(QWindow* parent = nullptr);
+
+    ~QLayerShell() {
+        delete m_root;
+    }
 
     void setAnchors(Anchors anchor);
     Anchors anchors() const;
@@ -76,12 +80,19 @@ public:
     void setScope(const QString& scope);
     QString scope() const;
 
-    static void useLayerShell();
+    void setWidget(QWidget* widget);
+    QWidget* widget();
 
+    void paintEvent(QPaintEvent* event) override;
 
 private:
-    LayerShellQt::Window* m_shellWindow;
 
+    static bool m_shellInit;
+
+    QWidget* m_root;
+    QWidget* m_container;
+
+    LayerShellQt::Window* m_shellWindow;
 };
 
 #endif

@@ -9,10 +9,32 @@
 #define WINDOW_ANCHOR LayerShellQt::Window::Anchor
 
 
-QLayerShell::QLayerShell(QWindow* window, QObject* parent): 
-    QObject(parent)
+bool QLayerShell::m_shellInit = false;
+
+
+QLayerShell::QLayerShell(QWindow* window): 
+    QRasterWindow(window)
 {
-    m_shellWindow = LayerShellQt::Window::get(window);
+
+    if (!m_shellInit) {
+        m_shellInit = true;
+        LayerShellQt::Shell::useLayerShell();
+    }
+
+    // Root widget with translucent background
+    m_root = new QWidget();
+    m_root->setAttribute(Qt::WA_TranslucentBackground);
+
+    QSurfaceFormat format;
+    format.setAlphaBufferSize(32);
+    format.setBlueBufferSize(32);
+    format.setRedBufferSize(32);
+    format.setGreenBufferSize(32);
+    format.setDepthBufferSize(32);
+    format.setRenderableType(QSurfaceFormat::RenderableType::OpenGL);
+    setFormat(format);
+
+    m_shellWindow = LayerShellQt::Window::get(this);
 }
 
 void QLayerShell::setAnchors(Anchors anchor) {
@@ -65,6 +87,29 @@ QString QLayerShell::scope() const {
     return m_shellWindow->scope();
 }
 
-void QLayerShell::useLayerShell() {
-    LayerShellQt::Shell::useLayerShell();
+void QLayerShell::setWidget(QWidget* widget) {
+    if (widget) {
+        if (m_container) {
+            m_container->setParent(nullptr);
+        }
+        m_container = widget;
+        m_container->setParent(m_root);
+    }
+}
+
+QWidget* QLayerShell::widget() {
+    return m_container;
+}
+
+void QLayerShell::paintEvent(QPaintEvent* event) {
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::RenderHint::Antialiasing, true);
+
+    m_root->resize(size());
+    m_root->render(&painter, QPoint(0, 0), QRegion(), 
+                    QWidget::RenderFlag::DrawChildren);
+                    
+    painter.end();
+
+    QRasterWindow::paintEvent(event);
 }
