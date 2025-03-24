@@ -13,17 +13,23 @@ if __name__ == '__main__':
     screens = app.screens()
     
     btn = QPushButton('test')
-    widget = QFrame()
+    
     
     ls = QLayerShell(
-        widget,
-        'test-shell',
-        screens[1],
-        QLayerShell.Layer.Top,
-        QMargins(0, 0, 0, 0),
+        scope='test-shell',
+        screen=screens[1],
+        layer=QLayerShell.Layer.Top,
+        margins=QMargins(0, 0, 500, 0),
         exclusiveZone=30,
-        exclusiveEdge=QLayerShell.Anchor.Top
+        exclusiveEdge=QLayerShell.Anchor.Left
     )
+    
+    widget = QFrame()
+    ls.setWidget(widget)
+    
+    l = QHBoxLayout()
+    l.addWidget(btn)
+    widget.setLayout(l)
     
     widget.move(400, 200)
     widget.setFixedWidth(500)
