@@ -11,6 +11,7 @@ Build dependencies:
 - CMake
 - Ninja
 - PySide6
+- LayerShellQt
 - Shiboken6
 - py-build-cmake
 
