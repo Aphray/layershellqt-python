@@ -1,6 +1,3 @@
-// Copyright (C) 2016 The Qt Company Ltd.
-// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
-
 #ifndef QLAYERSHELL_H
 #define QLAYERSHELL_H
 
@@ -11,12 +8,13 @@
 #include <QWidget>
 #include <QScreen>
 #include <QPainter>
+#include <QMouseEvent>
 #include <QRasterWindow>
 #include <LayerShellQt/Shell>
 #include <LayerShellQt/Window>
 
 
-class BINDINGS_API QLayerShell : public QRasterWindow
+class BINDINGS_API QLayerShell : public QWidget
 {
     Q_OBJECT
 
@@ -53,11 +51,11 @@ public:
     };
     Q_ENUM(ScreenConfiguration)
 
-    explicit QLayerShell(QWindow* parent = nullptr);
+    QLayerShell(QWidget* parent = nullptr);
 
-    ~QLayerShell() {
-        delete m_root;
-    }
+    // ~QLayerShell() {
+    //     delete m_root;
+    // }
 
     void setAnchors(Anchors anchor);
     Anchors anchors() const;
@@ -85,12 +83,13 @@ public:
 
     void paintEvent(QPaintEvent* event) override;
 
+    void show();
+
 private:
 
     static bool m_shellInit;
 
-    QWidget* m_root;
-    QWidget* m_container;
+    QWidget* m_widget;
 
     LayerShellQt::Window* m_shellWindow;
 };
