@@ -53,7 +53,7 @@ app = QApplication(sys.argv)
 widget = QWidget()
 shell = QLayerShell(widget)
 
-widget.show()
+shell.show()
 
 sys.exit(app.exec())
 ```
