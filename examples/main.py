@@ -5,7 +5,6 @@ from PySide6.QtCore import QMargins
 from QtLayerShell import QLayerShell
 
 
-
 if __name__ == '__main__':
     
     app = QApplication(sys.argv)

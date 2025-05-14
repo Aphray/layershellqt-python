@@ -20,12 +20,8 @@ QLayerShell::QLayerShell(QWidget* parent) : QWidget(parent)
         LayerShellQt::Shell::useLayerShell();
     }
 
-    // Hackish way to create the QWindow, so that `windowHandle()` 
-    // does not return null
-    show();
-    hide();
 
-    // Set the background translucent
+    setAttribute(Qt::WA_NativeWindow);
     setAttribute(Qt::WA_TranslucentBackground);
 
     // Set the surface format to allow blurring by the compositor
@@ -84,8 +80,7 @@ QMargins QLayerShell::margins() const
 
 void QLayerShell::setLayer(Layer layer)
 {
-    m_shellWindow->setLayer(
-        (LayerShellQt::Window::Layer)(int)layer);
+    m_shellWindow->setLayer((LayerShellQt::Window::Layer)(int)layer);
 }
 
 QLayerShell::Layer QLayerShell::layer() const

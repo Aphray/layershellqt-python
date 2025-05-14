@@ -1,8 +1,8 @@
 import enum
 import typing as tp
 from PySide6.QtWidgets import QWidget
-from PySide6.QtCore import QMargins, QPoint, Qt
-from PySide6.QtGui import QScreen, QRasterWindow, QPaintEvent, QPainter, QRegion, QSurfaceFormat
+from PySide6.QtCore import QMargins
+from PySide6.QtGui import QScreen
 
 try:
     from .QtLayerShell import QLayerShell as QLayerShell_CPP
