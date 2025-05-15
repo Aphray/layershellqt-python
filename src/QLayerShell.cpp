@@ -20,8 +20,8 @@ QLayerShell::QLayerShell(QWidget* parent) : QWidget(parent)
         LayerShellQt::Shell::useLayerShell();
     }
 
-
     setAttribute(Qt::WA_NativeWindow);
+    setAttribute(Qt::WA_NoSystemBackground);
     setAttribute(Qt::WA_TranslucentBackground);
 
     // Set the surface format to allow blurring by the compositor
