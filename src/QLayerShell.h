@@ -69,8 +69,8 @@ public:
     void setMargins(const QMargins& margins);
     QMargins margins() const;
 
-    // void setKeyboardInteractivity(KeyboardInteractivity interactivity);
-    // KeyboardInteractivity keyboardInteractivity() const;
+    void setKeyboardInteractivity(KeyboardInteractivity interactivity);
+    KeyboardInteractivity keyboardInteractivity() const;
 
     void setLayer(Layer layer);
     Layer layer() const;

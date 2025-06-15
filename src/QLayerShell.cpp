@@ -78,6 +78,12 @@ QMargins QLayerShell::margins() const
     return m_shellWindow->margins();
 }
 
+void QLayerShell::setKeyboardInteractivity(KeyboardInteractivity activity) {
+    m_shellWindow->setKeyboardInteractivity(
+        (LayerShellQt::Window::KeyboardInteractivity)(int)activity
+    );
+}
+
 void QLayerShell::setLayer(Layer layer)
 {
     m_shellWindow->setLayer((LayerShellQt::Window::Layer)(int)layer);
