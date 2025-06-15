@@ -29,6 +29,7 @@ try:
             screen: QScreen | None = None,
             layer: Layer | None = None,
             margins: QMargins | None = None,
+            anchors: Anchor | None = None,
             exclusiveZone: int | None = None,
             exclusiveEdge: Anchor | None = None,
         ):
@@ -77,6 +78,9 @@ try:
         def setWidget(self, widget: QWidget):
             assert isinstance(widget, QWidget) or issubclass(widget, QWidget)
             super().setWidget(widget)
+            
+        def setAnchors(self, anchors: Anchor):
+            super().setAnchors(anchors)
             
         def show(self):
             super().show()
