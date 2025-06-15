@@ -100,14 +100,9 @@ QString QLayerShell::scope() const
 
 void QLayerShell::setWidget(QWidget *widget)
 {
-    if (widget)
+    if (widget && widget != m_widget)
     {
-        if (m_widget)
-        {
-            m_widget->setParent(nullptr);
-        }
         m_widget = widget;
-        m_widget->setParent(this);
     }
 }
 
