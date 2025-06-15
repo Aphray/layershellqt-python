@@ -3,6 +3,7 @@
 
 #include <QSurfaceFormat>
 #include <QApplication>
+#include <QVBoxLayout>
 
 #define WINDOW_ANCHOR LayerShellQt::Window::Anchor
 
@@ -23,6 +24,11 @@ QLayerShell::QLayerShell(QWidget* parent) : QWidget(parent)
     setAttribute(Qt::WA_NativeWindow);
     setAttribute(Qt::WA_NoSystemBackground);
     setAttribute(Qt::WA_TranslucentBackground);
+
+    QVBoxLayout* layout = new QVBoxLayout(this);
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setSpacing(0);
+    setLayout(layout);
 
     // Set the surface format to allow blurring by the compositor
     QSurfaceFormat format;
@@ -110,6 +116,7 @@ void QLayerShell::setWidget(QWidget *widget)
     {
         m_widget = widget;
         m_widget->setParent(this);
+        layout()->addWidget(m_widget);
     }
 }
 
@@ -118,19 +125,6 @@ QWidget *QLayerShell::widget()
     return m_widget;
 }
 
-
-void QLayerShell::paintEvent(QPaintEvent* event) {
-    QPainter painter(this);
-    painter.setRenderHint(QPainter::RenderHint::Antialiasing, true);
-
-    if (m_widget) {
-        m_widget->resize(size());
-        m_widget->render(&painter, QPoint(0, 0), QRegion(), 
-                            QWidget::RenderFlag::DrawChildren);
-    }
-
-    painter.end();
-}
 
 void QLayerShell::show() {
     QWidget::show();

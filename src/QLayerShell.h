@@ -4,12 +4,7 @@
 #include "macros.h"
 
 #include <QObject>
-#include <QWindow>
 #include <QWidget>
-#include <QScreen>
-#include <QPainter>
-#include <QMouseEvent>
-#include <QRasterWindow>
 #include <LayerShellQt/Shell>
 #include <LayerShellQt/Window>
 
@@ -80,8 +75,6 @@ public:
 
     void setWidget(QWidget* widget);
     QWidget* widget();
-
-    void paintEvent(QPaintEvent* event) override;
 
     void show();
 
