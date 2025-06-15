@@ -109,6 +109,7 @@ void QLayerShell::setWidget(QWidget *widget)
     if (widget && widget != m_widget)
     {
         m_widget = widget;
+        m_widget->setParent(this);
     }
 }
 
