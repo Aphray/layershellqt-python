@@ -10,11 +10,5 @@
         <enum-type name="Anchor" flags="Anchors"/>
         <enum-type name="Layer"/>
 
-        <!-- <modify-function signature="QLayerShell(QWidget*, QWindow*)">
-            <modify-argument index="1">
-                <parent index="this" action="add"/>
-            </modify-argument>
-        </modify-function> -->
-
     </object-type>
 </typesystem>
