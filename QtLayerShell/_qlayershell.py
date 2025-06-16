@@ -1,13 +1,14 @@
 import enum
 import typing as tp
+
 from PySide6.QtWidgets import QWidget
 from PySide6.QtCore import QMargins
 from PySide6.QtGui import QScreen
 
 try:
-    from .QtLayerShell import QLayerShell as QLayerShell_CPP
+    from .QtLayerShell import QLayerShell as QLayerShell_CPP    #type: ignore
     
-    class QLayerShell(QLayerShell_CPP):
+    class QLayerShell(QLayerShell_CPP, QWidget if tp.TYPE_CHECKING else object):
         
         class Anchor(enum.Flag):
             Top = QLayerShell_CPP.Anchor.AnchorTop
@@ -16,12 +17,17 @@ try:
             Left = QLayerShell_CPP.Anchor.AnchorLeft
             NoAnchor = QLayerShell_CPP.Anchor.AnchorNone
             
-        class Layer(enum.Flag):
+        class Layer(enum.Enum):
             Overlay = QLayerShell_CPP.Layer.LayerOverlay
             Top = QLayerShell_CPP.Layer.LayerTop
             Bottom = QLayerShell_CPP.Layer.LayerBottom
             Background = QLayerShell_CPP.Layer.LayerBackground
-
+        
+        # class KeyboardInteractivity(enum.Enum):
+        #     Exclusive = QLayerShell_CPP.KeyboardInteractivity.KeyboardInteractivityExclusive
+        #     OnDemand = QLayerShell_CPP.KeyboardInteractivity.KeyboardInteractivityOnDemand
+        #     NoInteractivity = QLayerShell_CPP.KeyboardInteractivity.KeyboardInteractivityNone
+            
         def __init__(
             self, 
             widget: QWidget | None = None,
@@ -82,6 +88,10 @@ try:
         def setAnchors(self, anchors: Anchor):
             assert isinstance(anchors, self.Anchor)
             super().setAnchors(anchors.value)
+            
+        # def setKeyboardInteractivity(self, interactivity: KeyboardInteractivity):
+        #     assert isinstance(interactivity, self.KeyboardInteractivity)
+        #     super().setKeyboardInteractivity(interactivity.value)
             
         def show(self):
             super().show()
