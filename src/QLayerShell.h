@@ -87,4 +87,6 @@ private:
     LayerShellQt::Window* m_shellWindow;
 };
 
+Q_DECLARE_OPERATORS_FOR_FLAGS(QLayerShell::Anchors)
+
 #endif
