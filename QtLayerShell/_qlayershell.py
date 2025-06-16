@@ -80,7 +80,8 @@ try:
             super().setWidget(widget)
             
         def setAnchors(self, anchors: Anchor):
-            super().setAnchors(anchors)
+            assert isinstance(anchors, self.Anchor)
+            super().setAnchors(anchors.value)
             
         def show(self):
             super().show()
