@@ -9,6 +9,7 @@
 
         <enum-type name="Anchor" flags="Anchors"/>
         <enum-type name="Layer"/>
+        <enum-type name="KeyboardInteractivity"/>
 
     </object-type>
 </typesystem>
