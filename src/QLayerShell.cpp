@@ -90,6 +90,10 @@ void QLayerShell::setKeyboardInteractivity(KeyboardInteractivity activity) {
     );
 }
 
+QLayerShell::KeyboardInteractivity QLayerShell::keyboardInteractivity() const {
+    return (KeyboardInteractivity)(int)m_shellWindow->keyboardInteractivity();
+}
+
 void QLayerShell::setLayer(Layer layer)
 {
     m_shellWindow->setLayer((LayerShellQt::Window::Layer)(int)layer);
