@@ -23,10 +23,10 @@ try:
             Bottom = QLayerShell_CPP.Layer.LayerBottom
             Background = QLayerShell_CPP.Layer.LayerBackground
         
-        # class KeyboardInteractivity(enum.Enum):
-        #     Exclusive = QLayerShell_CPP.KeyboardInteractivity.KeyboardInteractivityExclusive
-        #     OnDemand = QLayerShell_CPP.KeyboardInteractivity.KeyboardInteractivityOnDemand
-        #     NoInteractivity = QLayerShell_CPP.KeyboardInteractivity.KeyboardInteractivityNone
+        class KeyboardInteractivity(enum.Enum):
+            Exclusive = QLayerShell_CPP.KeyboardInteractivity.KeyboardInteractivityExclusive
+            OnDemand = QLayerShell_CPP.KeyboardInteractivity.KeyboardInteractivityOnDemand
+            NoInteractivity = QLayerShell_CPP.KeyboardInteractivity.KeyboardInteractivityNone
             
         def __init__(
             self, 
@@ -89,9 +89,9 @@ try:
             assert isinstance(anchors, self.Anchor)
             super().setAnchors(anchors.value)
             
-        # def setKeyboardInteractivity(self, interactivity: KeyboardInteractivity):
-        #     assert isinstance(interactivity, self.KeyboardInteractivity)
-        #     super().setKeyboardInteractivity(interactivity.value)
+        def setKeyboardInteractivity(self, interactivity: KeyboardInteractivity):
+            assert isinstance(interactivity, self.KeyboardInteractivity)
+            super().setKeyboardInteractivity(interactivity.value)
             
         def show(self):
             super().show()
