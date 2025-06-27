@@ -1,4 +1,4 @@
-qtlayershell-python
+layershellqt-python
 -
 Python wrapper for the [LayerShellQt](https://github.com/KDE/layer-shell-qt) library for creating shell windows/layers in Wayland-based compositors.
 
@@ -32,11 +32,11 @@ pip install py-build-cmake
 ```
 Clone this repository:
 ```
-git clone https://github.com/Aphray/layershellqt-python.git qtlayershell-python
+git clone https://github.com/Aphray/layershellqt-python.git layershellqt
 ```
 Build and install the bindings. **NOTE: `--no-build-isolation` flag is required for proper references to the PySide6 libraries!**
 ```
-cd qtlayershell-python
+cd layershellqt
 pip install . --no-build-isolation
 ```
 Using the bindings
